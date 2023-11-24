@@ -29,18 +29,19 @@ function cmplz_enqueue_rlx( ) {
 }
 add_action( 'wp_enqueue_scripts', 'cmplz_enqueue_rlx' );
 
-function cmplz_block_adobe_script( $tags ) {
-	$tags[] = array(
-		'name' => 'rolex',
-		'category' => 'rlx',
-		'urls' => array(
-			'assets.adobedtm.com',
-		),
-		'enable_placeholder' => '0',
-	);
-	return $tags;
-}
-add_filter( 'cmplz_known_script_tags', 'cmplz_block_adobe_script' );
+// November 2023
+// function cmplz_block_adobe_script( $tags ) {
+// 	$tags[] = array(
+// 		'name' => 'rolex',
+// 		'category' => 'rlx',
+// 		'urls' => array(
+// 			'assets.adobedtm.com',
+// 		),
+// 		'enable_placeholder' => '0',
+// 	);
+// 	return $tags;
+// }
+// add_filter( 'cmplz_known_script_tags', 'cmplz_block_adobe_script' );
 
 //<script type="text/javascript">
 //if (typeof _satellite !== 'undefined'){

@@ -23,9 +23,11 @@ add_filter('cmplz_banner_html', 'cmplz_add_rlx_category');
  * @return void
  */
 function cmplz_enqueue_rlx( ) {
-	wp_enqueue_script( 'cmplz-adobe', '//assets.adobedtm.com/7e3b3fa0902e/7ba12da1470f/launch-5de25e657d80.min.js', [] );
-	$script = plugin_dir_url(__FILE__). "rolex/script.js";
-	wp_enqueue_script( 'cmplz-rolex', $script, ['cmplz-cookiebanner'], filemtime($script).CMPLZ_ROLEX_VERSION );
+	if ((strpos($_SERVER['REQUEST_URI'], 'rolex') !== false) && (strpos($_SERVER['REQUEST_URI'], 'collection') === false)) { // only include Adobe if it is the /rolex page (or subpages) & do not include collection page as it is an iFrame and loads its own Adobe tags.
+		wp_enqueue_script( 'cmplz-adobe', '//assets.adobedtm.com/7e3b3fa0902e/7ba12da1470f/launch-5de25e657d80.min.js', [] );
+		$script = plugin_dir_url(__FILE__). "rolex/script.js";
+		wp_enqueue_script( 'cmplz-rolex', $script, ['cmplz-cookiebanner'], filemtime($script).CMPLZ_ROLEX_VERSION );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'cmplz_enqueue_rlx' );
 
@@ -48,7 +50,3 @@ add_action( 'wp_enqueue_scripts', 'cmplz_enqueue_rlx' );
 //	_satellite.pageBottom();
 //}
 //</script>
-
-
-
-
